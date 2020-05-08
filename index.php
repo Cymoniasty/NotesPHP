@@ -6,11 +6,8 @@ namespace App;
 
 require_once ("src/Utils/debug.php");
 
-if (!empty ($_GET['action'])){
-  $action = $_GET['action'];
-} else {
-  $action = "Pusto :(";
-};
+
+$action = $_GET['action'] ?? null;
 
 ?>  
 
