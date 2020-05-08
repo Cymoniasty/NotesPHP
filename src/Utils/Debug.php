@@ -1,6 +1,4 @@
-<?php 
-
-$test = "test";
+<?php
 
 function dump($test)
 {
@@ -16,5 +14,3 @@ function dump($test)
   echo '<pre>
   </div>';
 }
-
-dump($test);
