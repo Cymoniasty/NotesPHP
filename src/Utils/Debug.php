@@ -6,13 +6,16 @@ error_reporting(E_ALL);
 ini_set("display_errors", "1");
 
 function dump($test)
-{
-  echo 
-    '<div style = "display: inline-block;
-      padding: 0 10px;
-      border: 1px solid gray;
-      background-color: lightgray;">
-
-      <pre>';print_r($test);'</pre>
-    </div>';
+{ 
+  echo '<div 
+    style = "display: inline-block;
+    padding: 0 10px;
+    border: 1px solid gray;
+    background-color: lightgray;
+  "
+  >
+  <pre>';
+  print_r($test);
+  echo '</pre>
+  </div>';
 }
