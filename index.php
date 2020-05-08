@@ -12,9 +12,6 @@ if (!empty ($_GET['action'])){
   $action = "Pusto :(";
 };
 
-
-dump($action);
-
 ?>  
 
 <!DOCTYPE html>
@@ -39,7 +36,14 @@ dump($action);
     </div>
   </div>
 
-  <div class="footer"></div>
+  <div>
+    <?php if ($action === 'create'): ?>
+      <h3>Nowa notatka</h3>
+    <?php else: ?>
+      <h4>Lista notatek</h4>
+    <?php endif; ?>
+  </div>
 
+  <div class="footer"></div>
 </body>
 </html>
