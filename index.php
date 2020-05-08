@@ -6,11 +6,16 @@ namespace App;
 
 require_once ("src/Utils/debug.php");
 
-$test = "test";
-$secondaryTest = $test;
-dump($secondaryTest);
+if (!empty ($_GET['action'])){
+  $action = $_GET['action'];
+} else {
+  $action = "Pusto :(";
+};
 
-?>
+
+dump($action);
+
+?>  
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -34,7 +39,6 @@ dump($secondaryTest);
     </div>
   </div>
 
-  <div class="text">Treść</div>
   <div class="footer"></div>
 
 </body>
