@@ -7,7 +7,7 @@ ini_set("display_errors", "1");
 
 function dump($test)
 { 
-  echo '<div 
+  echo '<br/><div 
     style = "display: inline-block;
     padding: 0 10px;
     border: 1px solid gray;
@@ -17,5 +17,5 @@ function dump($test)
   <pre>';
   print_r($test);
   echo '</pre>
-  </div>';
+  <br/</div>';
 }
