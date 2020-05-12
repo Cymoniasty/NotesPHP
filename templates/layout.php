@@ -1,13 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NotatnikPHP</title>
 </head>
+
 <body>
-  
+
   <div class="header">
     <h1>Moje notatki</h1>
   </div>
@@ -20,18 +21,13 @@
       </ul>
     </div>
   </div>
-  
+
   <?php
-    if ($page === 'create'){
-      include_once("templates/pages/create.php");
-    
-    } else {
-      include_once("templates/pages/list.php");
-    
-    }
+  include_once("templates/pages/$page.php");
   ?>
-  
+
   <div class="footer">Stopka</div>
 
 </body>
+
 </html>
