@@ -9,10 +9,10 @@
 
 <body>
 
+  <!-- Główny widok -->
   <div class="header">
     <h1>Moje notatki</h1>
   </div>
-
   <div class="container">
     <div class="menu">
       <ul>
@@ -22,12 +22,12 @@
     </div>
   </div>
 
+  <!-- Renderowanie odpowiedniego widoku -->
   <?php
-  include_once("templates/pages/$page.php");
+  require_once("templates/pages/$page.php");
   ?>
 
   <div class="footer">Stopka</div>
-
 </body>
 
 </html>
