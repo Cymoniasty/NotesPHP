@@ -16,6 +16,8 @@ const DEFAULT_ACTION = "list";
 
 $action = $_GET['action'] ?? DEFAULT_ACTION;
 
+$controller = new Controller();
+
 $view = new View();
 
 $viewParams = [];
