@@ -6,6 +6,7 @@ namespace App;
 
 // Zakomentować ten plik debug.php jak pójdzie już projekt na proda
 require_once("src/Utils/debug.php");
+require_once("src/Controller.php");
 require_once("src/view.php");
 
 // Jak już projekt poleci na produkcję to wyłącz pokazywanie błędów:
@@ -18,34 +19,4 @@ $action = $_GET['action'] ?? DEFAULT_ACTION;
 
 $controller = new Controller();
 
-$view = new View();
-
-$viewParams = [];
-
-switch ($action) {
-    case 'create':
-        $page = 'create';
-        $created = false;
-
-        if (!empty($_POST)) {
-            $created = true;
-            $viewParams = [
-                'title' => $_POST['title'],
-                'description' => $_POST['description']
-            ];
-        }
-        $viewParams['created'] = $created;
-        break;
-    case 'show':
-        $viewParams = [
-            'title' => 'Moja notatka',
-            'description' => 'Opis'
-        ];
-        break;
-    default:
-        $page = 'list';
-        $viewParams['resultList'] = "Wyświetlamy notatki";
-        break;
-}
-
-$view->render($page, $viewParams);
+$controller->run($action);
