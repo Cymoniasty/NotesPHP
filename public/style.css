@@ -99,9 +99,8 @@ form input[type=button] {
 
     border: none;
     color: #fff;
-    font-size: 18px;
     text-transform: uppercase;
-    padding: 12 40px;
+    padding: 12px 40px;
 }
 
 form input[type=submit]:hover,
