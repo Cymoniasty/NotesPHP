@@ -8,6 +8,10 @@ namespace App;
 require_once("src/Utils/debug.php");
 require_once("src/Controller.php");
 
+$configuration = require_once("config/config.php");
+
+dump($configuration);
+
 // Jak już projekt poleci na produkcję to wyłącz pokazywanie błędów:
 // error_reporting(0);
 // ini_set("display_errors", "0");
@@ -17,4 +21,5 @@ $request = [
     'post' => $_POST
 ];
 
+Controller::initConfiguration($configuration);
 (new Controller($request))->run();
