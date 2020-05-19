@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App;
 
-use Collator;
-
 // Zakomentować ten plik debug.php jak pójdzie już projekt na proda
 require_once("src/Utils/debug.php");
 require_once("src/Controller.php");
