@@ -19,22 +19,22 @@ $configuration = require_once("config/config.php");
 // ini_set("display_errors", "0");
 
 $request = [
-    'get' => $_GET,
-    'post' => $_POST
+  'get' => $_GET,
+  'post' => $_POST
 ];
 
 try {
-    // $controller = new Controller($request);
-    // $controller->run();
+  // $controller = new Controller($request);
+  // $controller->run();
 
-    Controller::initConfiguration($configuration);
-    (new Controller($request))->run();
+  Controller::initConfiguration($configuration);
+  (new Controller($request))->run();
 } catch (ConfigurationException $e) {
-    echo '<h1>Wystąpił błąd w aplikacji</h1>';
-    echo 'Proszę skonatkować się z administratorem';
+  echo '<h1>Wystąpił błąd w aplikacji</h1>';
+  echo 'Proszę skonatkować się z administratorem';
 } catch (AppException $e) {
-    echo '<h1>Wystąpił błąd w aplikacji</h1>';
-    echo '<h3>' . $e->getMessage() . '</h3>';
+  echo '<h1>Wystąpił błąd w aplikacji</h1>';
+  echo '<h3>' . $e->getMessage() . '</h3>';
 } catch (Throwable $e) {
-    echo '<h1>Wystąpił błąd w aplikacji</h1>';
+  echo '<h1>Wystąpił błąd w aplikacji</h1>';
 }

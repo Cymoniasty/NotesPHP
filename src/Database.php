@@ -14,33 +14,33 @@ use Throwable;
 
 class Database
 {
-    public function __construct(array $config)
-    {
+  public function __construct(array $config)
+  {
 
-        try {
+    try {
 
-            $this->validateConfig($config);
+      $this->validateConfig($config);
 
-            $dsn = "mysql:dbname={$config['database']};host={$config['host']}";
-            $connection = new PDO(
-                $dsn,
-                $config['user'],
-                $config['password']
-            );
-        } catch (PDOException $e) {
-            throw new StorageException("Connection error");
-        }
+      $dsn = "mysql:dbname={$config['database']};host={$config['host']}";
+      $connection = new PDO(
+        $dsn,
+        $config['user'],
+        $config['password']
+      );
+    } catch (PDOException $e) {
+      throw new StorageException("Connection error");
     }
+  }
 
-    private function validateConfig(array $config): void
-    {
-        if (
-            empty($config['database'])
-            || empty($config['host'])
-            || empty($config['user'])
-            || empty($config['password'])
-        ) {
-            throw new ConfigurationException('Storage configuration error');
-        }
+  private function validateConfig(array $config): void
+  {
+    if (
+      empty($config['database'])
+      || empty($config['host'])
+      || empty($config['user'])
+      || empty($config['password'])
+    ) {
+      throw new ConfigurationException('Storage configuration error');
     }
+  }
 }
