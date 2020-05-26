@@ -29,9 +29,14 @@ class Database
   }
 
 
-  public function createNote(): void
+  public function createNote(array $data): void
   {
-    echo "tworzymy notkie";
+    try {
+      echo "Tworzymy notatkę";
+      dump($data);
+    } catch (Throwable $e) {
+      dump($e);
+    };
   }
 
   private function createConnection(array $config): void
