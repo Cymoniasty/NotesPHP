@@ -34,7 +34,6 @@ try {
   echo 'Proszę skonatkować się z administratorem';
 } catch (AppException $e) {
   echo '<h1>Wystąpił błąd w aplikacji</h1>';
-  echo '<h3>' . $e->getMessage() . '</h3>';
 } catch (Throwable $e) {
   echo '<h1>Wystąpił błąd w aplikacji</h1>';
 }

@@ -47,13 +47,14 @@ class Controller
         $data = $this->getRequestPost();
         if (!empty($data)) {
           $created = true;
+          $this->database->createNote($data); // tworzymy tutaj notatkę
+          header('Location /'); // po utworzeniu notatki przenosi nas do strony głównej
 
-          $this->database->createNote($data);
-
-          $viewParams = [
-            'title' =>  $data['title'],
-            'description' =>  $data['description']
-          ];
+          //na wszelki wypadek go tu zostawie, jak się nie pojawi dalej w kursie to do wyjebania xD
+          // $viewParams = [
+          //   'title' =>  $data['title'],
+          //   'description' =>  $data['description']
+          // ];
         }
         $viewParams['created'] = $created;
         break;

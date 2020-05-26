@@ -14,12 +14,10 @@ use Throwable;
 
 class Database
 {
-
   private PDO $conn;
 
   public function __construct(array $config)
   {
-
     try {
       $this->validateConfig($config);
       $this->createConnection($config);
@@ -28,15 +26,20 @@ class Database
     }
   }
 
-
   public function createNote(array $data): void
   {
     try {
-      echo "Tworzymy notatkę";
-      dump($data);
+      $title = $this->conn->quote($data['title']); // funkcja eskejpująca parametr do niej przekazany.
+      $description = $this->conn->quote($data['description']);
+      $created = $this->conn->quote(date('Y-m-d H:i:s'));
+
+      $query = "INSERT INTO notes(title, description, created) VALUES ($title, $description, $created)"; //budujemy zapytanie
+
+      $this->conn->exec($query); //wykonujemy zapytanie do bazy danych
+
     } catch (Throwable $e) {
-      dump($e);
-    };
+      throw new StorageException('Nie udało się utworzyć nowej notatki', 400, $e);
+    }
   }
 
   private function createConnection(array $config): void
@@ -45,7 +48,10 @@ class Database
     $this->conn = new PDO(
       $dsn,
       $config['user'],
-      $config['password']
+      $config['password'],
+      [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+      ]
     );
   }
 
