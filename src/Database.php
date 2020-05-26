@@ -44,7 +44,7 @@ class Database
 
   private function createConnection(array $config): void
   {
-    $dsn = "mysql:dbname={$config['database']};host={$config['host']}";
+    $dsn = "mysql:dbname={$config['database']};host={$config['host']}"; //polączenie do db
     $this->conn = new PDO(
       $dsn,
       $config['user'],

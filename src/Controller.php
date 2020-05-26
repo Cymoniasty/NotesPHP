@@ -42,21 +42,16 @@ class Controller
     switch ($this->action()) {
       case 'create':
         $page = 'create';
-        $created = false;
 
         $data = $this->getRequestPost();
         if (!empty($data)) {
-          $created = true;
-          $this->database->createNote($data); // tworzymy tutaj notatkę
-          header('Location /'); // po utworzeniu notatki przenosi nas do strony głównej
-
-          //na wszelki wypadek go tu zostawie, jak się nie pojawi dalej w kursie to do wyjebania xD
-          // $viewParams = [
-          //   'title' =>  $data['title'],
-          //   'description' =>  $data['description']
-          // ];
+          $noteData = [
+            'title' => $data['title'],
+            'description' => $data['description']
+          ];
+          $this->database->createNote($noteData); // tworzymy tutaj notatkę i przekazujemy wymagane dane
+          header('Location:/?before=created'); // po utworzeniu notatki przenosi nas do strony głównej
         }
-        $viewParams['created'] = $created;
         break;
       case 'show':
         $viewParams = [
@@ -66,7 +61,8 @@ class Controller
         break;
       default:
         $page = 'list';
-        $viewParams['resultList'] = "Wyświetlamy notatki";
+        $data = $this->getRequestGet();
+        $viewParams['before'] = $data['before'] ?? null;
         break;
     }
     $this->view->render($page, $viewParams);
