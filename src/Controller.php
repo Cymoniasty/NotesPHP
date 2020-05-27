@@ -50,21 +50,29 @@ class Controller
           ];
           $this->database->createNote($noteData); // tworzymy tutaj notatkę i przekazujemy wymagane dane
           header('Location:/?before=created'); // po utworzeniu notatki przenosi nas do strony głównej
+          exit;
         }
         break;
       case 'show':
         $page = 'show';
+
         $data = $this->getRequestGet();
-        $noteId = (int) $data['id'];
+        $noteId = (int) ($data['id'] ?? null);
+
+        if (!$noteId) {
+          header('Location:/?error=missingNoteId');
+          exit;
+        }
+
         try {
-          $this->database->getNote($noteId);
+          $note = $this->database->getNote($noteId);
         } catch (NotFoundException $e) {
-          exit('Jesteśmy w kontrolerze');
+          header('Location:/?error=noteNotFound');
+          exit;
         }
 
         $viewParams = [
-          'title' => 'Moja notatka',
-          'description' => 'Opis'
+          'note' => $note
         ];
         break;
       default:
@@ -73,7 +81,8 @@ class Controller
 
         $viewParams = [
           'notes' => $this->database->getNotes(),
-          'before' => $data['before'] ?? null
+          'before' => $data['before'] ?? null,
+          'error' => $data['error'] ?? null
         ];
         break;
     }
