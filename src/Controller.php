@@ -52,6 +52,7 @@ class Controller
         }
         break;
       case 'show':
+        $page = 'show';
         $viewParams = [
           'title' => 'Moja notatka',
           'description' => 'Opis'
