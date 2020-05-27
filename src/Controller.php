@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use App\Exception\ConfigurationException;
+use App\Exception\NotFoundException;
 
 require_once("Database.php");
 require_once("View.php");
@@ -53,6 +54,14 @@ class Controller
         break;
       case 'show':
         $page = 'show';
+        $data = $this->getRequestGet();
+        $noteId = (int) $data['id'];
+        try {
+          $this->database->getNote($noteId);
+        } catch (NotFoundException $e) {
+          exit('Jesteśmy w kontrolerze');
+        }
+
         $viewParams = [
           'title' => 'Moja notatka',
           'description' => 'Opis'
