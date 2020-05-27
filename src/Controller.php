@@ -67,7 +67,7 @@ class Controller
         ];
         break;
     }
-    $this->view->render($page, $viewParams);
+    $this->view->render($page, $viewParams ?? []);
   }
 
   private function action(): string

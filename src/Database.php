@@ -29,7 +29,7 @@ class Database
   public function getNotes(): array
   {
     try {
-      $query = "SELECT id, title, created FROM notes";
+      $query = "SELECT id, title, created FROM notes ORDER BY id DESC";
       $result = $this->conn->query($query);
       $notes = $result->fetchAll(PDO::FETCH_ASSOC);
       return $notes;
