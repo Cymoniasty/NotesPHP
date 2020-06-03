@@ -19,7 +19,7 @@ class Controller
   private static array $configuration = [];
 
   private Database $database;
-  private array $request;
+  private Request $request;
   private View $view;
 
   public static function initConfiguration(array $configuration): void
