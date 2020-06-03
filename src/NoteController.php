@@ -45,10 +45,6 @@ class NoteController extends AbstractController
       exit;
     }
 
-    $viewParams = [
-      'note' => $note
-    ];
-
     $this->view->render(
       'show',
       ['note' => $note]

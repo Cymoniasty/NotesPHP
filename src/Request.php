@@ -22,11 +22,11 @@ class Request
 
     public function getParam(string $name, $default = null)
     {
-        return $this->get[$name] ?? null;
+        return $this->get[$name] ?? $default;
     }
 
     public function postParam(string $name, $default = null)
     {
-        return $this->post[$name] ?? null;
+        return $this->post[$name] ?? $default;
     }
 }

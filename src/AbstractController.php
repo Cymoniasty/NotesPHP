@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App;
 
-use App\Exception\ConfigurationException;
-
+require_once("Exception/ConfigurationException.php");
 require_once("Request.php");
 require_once("Database.php");
 require_once("View.php");
 
+use App\Exception\ConfigurationException;
 
 abstract class AbstractController
 {
@@ -44,7 +44,7 @@ abstract class AbstractController
             $action = self::DEFAULT_ACTION . 'Action';
         }
 
-        $this->$action;
+        $this->$action();
     }
 
     private function action(): string
