@@ -6,7 +6,9 @@ namespace App;
 
 use App\Exception\ConfigurationException;
 use App\Exception\NotFoundException;
+use App\Request;
 
+require_once("Request.php");
 require_once("Database.php");
 require_once("View.php");
 
@@ -42,11 +44,11 @@ class Controller
       case 'create':
         $page = 'create';
 
-        $data = $this->getRequestPost();
-        if (!empty($data)) {
+
+        if ($this->request->hasPost()) {
           $noteData = [
-            'title' => $data['title'],
-            'description' => $data['description']
+            'title' => $this->request->postParam('title'),
+            'description' => $this->request->postParam('description')
           ];
           $this->database->createNote($noteData); // tworzymy tutaj notatkę i przekazujemy wymagane dane
           header('Location:/?before=created'); // po utworzeniu notatki przenosi nas do strony głównej
@@ -56,8 +58,7 @@ class Controller
       case 'show':
         $page = 'show';
 
-        $data = $this->getRequestGet();
-        $noteId = (int) ($data['id'] ?? null);
+        $noteId = (int) $this->request->getParam('id');
 
         if (!$noteId) {
           header('Location:/?error=missingNoteId');
@@ -77,12 +78,11 @@ class Controller
         break;
       default:
         $page = 'list';
-        $data = $this->getRequestGet();
 
         $viewParams = [
           'notes' => $this->database->getNotes(),
-          'before' => $data['before'] ?? null,
-          'error' => $data['error'] ?? null
+          'before' => $this->request->getParam('before'),
+          'error' => $this->request->getParam('error')
         ];
         break;
     }
@@ -91,17 +91,6 @@ class Controller
 
   private function action(): string
   {
-    $data = $this->getRequestGet();
-    return $data['action'] ?? self::DEFAULT_ACTION; // self to wskazanie na klasę, w której się znajduje stała
-  }
-
-  private function getRequestGet(): array
-  {
-    return $this->request['get'] ?? [];
-  }
-
-  private function getRequestPost(): array
-  {
-    return $this->request['post'] ?? [];
+    return  $this->request->getParam('action', self::DEFAULT_ACTION); // self to wskazanie na klasę, w której się znajduje stała
   }
 }

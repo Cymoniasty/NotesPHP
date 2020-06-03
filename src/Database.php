@@ -37,9 +37,11 @@ class Database
     } catch (Throwable $e) {
       throw new StorageException('Nie udało się pobrać notatki', 400, $e);
     }
+
     if (!$note) {
       throw new NotFoundException('Notatka o id:' . $id . 'nie istnieje');
     }
+
     return $note;
   }
 
@@ -48,8 +50,7 @@ class Database
     try {
       $query = "SELECT id, title, created FROM notes ORDER BY id DESC";
       $result = $this->conn->query($query);
-      $notes = $result->fetchAll(PDO::FETCH_ASSOC);
-      return $notes;
+      return $result->fetchAll(PDO::FETCH_ASSOC);
     } catch (Throwable $e) {
       throw new StorageException('Nie udało się pobrać notatek', 400, $e);
     }
