@@ -6,7 +6,7 @@ namespace App;
 
 // Zakomentować ten plik debug.php jak pójdzie już projekt na proda
 require_once("src/Utils/debug.php");
-require_once("src/Controller.php");
+require_once("src/NoteController.php");
 require_once("src/Request.php");
 
 use App\Exception\AppException;
@@ -26,8 +26,8 @@ try {
   // $controller = new Controller($request);
   // $controller->run();
 
-  Controller::initConfiguration($configuration);
-  (new Controller($request))->run();
+  AbstractController::initConfiguration($configuration);
+  (new NoteController($request))->run();
 } catch (ConfigurationException $e) {
   echo '<h1>Wystąpił błąd w aplikacji</h1>';
   echo 'Proszę skonatkować się z administratorem';
