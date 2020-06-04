@@ -6,7 +6,7 @@ namespace App;
 
 // Zakomentować ten plik debug.php jak pójdzie już projekt na proda
 require_once("src/Utils/debug.php");
-require_once("src/NoteController.php");
+require_once("src/Controller/NoteController.php");
 require_once("src/Request.php");
 
 use App\Exception\AppException;
