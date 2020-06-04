@@ -7,6 +7,9 @@
             <li><?php echo htmlentities($note['description']) ?> </li>
             <li>Utworzono: <?php echo htmlentities($note['created']) ?> </li>
         </ul>
+        <a href="/?action=edit&id="><?php $note['id'] ?>
+            <button>Edytuj</button>
+        </a>
     <?php else : ?>
         <div> Brak notatki do wyświetlenia </div>
     <?php endif ?>

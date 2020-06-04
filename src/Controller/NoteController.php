@@ -61,4 +61,11 @@ class NoteController extends AbstractController
       ]
     );
   }
+
+  public function editAction()
+  {
+    $this->view->render(
+      'edit'
+    );
+  }
 }
