@@ -35,6 +35,24 @@ abstract class AbstractController
         $this->view = new View();
     }
 
+    protected function redirect($to, array $params)
+    {
+        $location = $to;
+
+        if (count($params)) {
+            $queryParams = [];
+            foreach ($params as $key => $value) {
+                $queryParams[] = urlencode($key) . "=" . urlencode($value);
+            }
+            $queryParams = implode('&', $queryParams);
+            $location .= '?' . $queryParams;
+        }
+
+
+        header("Location: $location");
+        exit;
+    }
+
     public function run(): void
     {
         $action = $this->action() . 'Action';

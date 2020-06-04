@@ -19,8 +19,7 @@ class NoteController extends AbstractController
         'description' => $this->request->postParam('description')
       ];
       $this->database->createNote($noteData); // tworzymy tutaj notatkę i przekazujemy wymagane dane
-      header('Location:/?before=created'); // po utworzeniu notatki przenosi nas do strony głównej
-      exit;
+      $this->redirect('/', ['before' => 'created']); // po utworzeniu notatki przenosi nas do strony głównej
     }
 
     $this->view->render('create');
@@ -32,15 +31,13 @@ class NoteController extends AbstractController
     $noteId = (int) $this->request->getParam('id');
 
     if (!$noteId) {
-      header('Location:/?error=missingNoteId');
-      exit;
+      $this->redirect('/', ['error' => 'missingNoteId']);
     }
 
     try {
       $note = $this->database->getNote($noteId);
     } catch (NotFoundException $e) {
-      header('Location:/?error=noteNotFound');
-      exit;
+      $this->redirect('/', ['error' => 'noteNotFound']);
     }
 
     $this->view->render(
@@ -64,6 +61,11 @@ class NoteController extends AbstractController
 
   public function editAction()
   {
+
+    $noteId = (int) $this->request->getParam('id');
+    if (!$noteId) {
+      $this->redirect('/', ['error' => 'missingNoteId']);
+    }
     $this->view->render(
       'edit'
     );
