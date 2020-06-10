@@ -23,7 +23,7 @@ use App\Exception\ConfigurationException;
 // ini_set("display_errors", "0");
 
 
-$request = new Request($_GET, $_POST);
+$request = new Request($_GET, $_POST, $_SERVER);
 
 try {
   // $controller = new Controller($request);
