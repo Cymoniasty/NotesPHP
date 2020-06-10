@@ -12,7 +12,6 @@
 <body class="body">
   <div class="wrapper">
 
-    <!-- Główny widok -->
     <div class="header">
       <h1><i class="far fa-clipboard"></i>Moje notatki</h1>
     </div>
@@ -25,7 +24,6 @@
         </ul>
       </div>
 
-      <!-- Renderowanie odpowiedniego widoku -->
       <div class="page">
         <?php require_once("templates/pages/$page.php"); ?>
       </div>
